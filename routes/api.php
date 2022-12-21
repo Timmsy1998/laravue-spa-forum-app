@@ -17,3 +17,14 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::apiResources([
+    'post' => PostController::class,
+    'category' => CategoryController::class,
+    'post/{post}/reply' => ReplyController::class,
+]);
+
+Route::post('/like/{reply}', 'LikeController@store');
+Route::delete('/like/{reply}', 'LikeController@destroy');
+
+
